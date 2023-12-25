@@ -2,6 +2,7 @@
 
 {% block content%}
     <div class="d-flex flex-wrap">
+        {% comment %} for side bar containing categories {% endcomment %}
         <div class="col-2 mt-5 pt-5 ps-5">
             {% for cat in category %}
                 <div class="form-check">
@@ -14,6 +15,7 @@
                 </div>
             {% endfor %}
         </div>
+        {% comment %} posts {% endcomment %}
         <div class="col-10">
             <div class="d-flex flex-wrap justify-content-center px-5 m-5 ">
                 {% for post in data%}
