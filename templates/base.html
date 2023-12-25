@@ -22,9 +22,11 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'add_category' %}">Add Category</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'add_post' %}">Add Post</a>
-          </li>
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'add_post' %}">Add Post</a>
+            </li>
+          {% endif %}
           {% comment %} <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'edit_post' %}">Edit Post</a>
           </li> {% endcomment %}
@@ -32,15 +34,22 @@
         </ul>
         <div class="d-flex" role="search">
           <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-
-            <li class="nav-item">
-              <a class="nav-link active btn btn-warning fw-bold text-white" aria-current="page" href="{% url 'register' %}">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active btn btn-primary mx-3 text-white" aria-current="page" href="{% url 'register' %}">Login</a>
-            </li>
+            {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link active btn btn-warning fw-bold text-white" aria-current="page" href="{% url 'profile' %}">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active btn btn-danger fw-bold text-white mx-3" aria-current="page" href="{% url 'user_logout' %}">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link active btn btn-warning fw-bold text-white " aria-current="page" href="{% url 'register' %}">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active btn btn-primary mx-3 text-white" aria-current="page" href="{% url 'user_longin' %}">Login</a>
+              </li>
+            {% endif %}
           </ul>
-
         </div>
       </div>
     </div>
@@ -56,7 +65,13 @@
 
 
 
-
+  <div style=" margin-right:30px; margin-bottom:200px;width:300px; height:1px; border:2px solid red; position:fixed; right:0; bottom:0; ">
+    {% for i in messages %}
+      <div class="bg-success p-5 fs-4">
+        {{i}}
+      </div>
+    {% endfor %}
+  </div>
 
 
 

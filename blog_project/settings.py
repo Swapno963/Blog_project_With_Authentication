@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     
 ]
 
+LOGIN_URL ='/author/login'
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 

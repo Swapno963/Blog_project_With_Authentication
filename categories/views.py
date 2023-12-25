@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
 from . import forms
 # Create your views here.
+@login_required
 def add_category(request):
     if request.method == 'POST':
         category_form = forms.CategoriesForm(request.POST)
@@ -10,5 +12,3 @@ def add_category(request):
     else:
         category_form = forms.CategoriesForm()
     return render(request,'add_category.html',{'form':category_form})
-
-
